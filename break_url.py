@@ -17,7 +17,7 @@ class URL:
 json_string = ""
 
 if os.path.exists("data.json"):
-	with open("data.json") as f:
+	with open("data.json", "r", encoding="utf-8") as f:
 		json_string = f.read()
 
 urls = []
@@ -60,7 +60,7 @@ with open("domains.json", "w") as d:
 urls_string = ""
 lista_u = []
 if os.path.exists("urls.json"):
-	with open("urls.json", "r") as u:
+	with open("urls.json", "r", encoding="utf-8") as u:
 		urls_string = u.read()
 
 if len(urls_string) > 0:
@@ -80,5 +80,5 @@ for url in urls:
 
 urls_string = json.dumps([ob.__dict__ for ob in lista_u])
 
-with open("urls.json", "w") as u:
+with open("urls.json", "w", encoding="utf-8") as u:
 	u.write(urls_string)

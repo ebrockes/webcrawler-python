@@ -6,15 +6,15 @@ import json
 import os.path
 
 class Site:
-	def __init__(self, url, titulo, especie):
+	def __init__(self, url, titulo, texto):
 		self.url = url
 		self.titulo = titulo
-		self.especie = especie
+		self.texto = texto
 
 
-with open("lista.txt", "r") as texts:
+with open("lista.txt", "r", encoding="utf-8") as texts:
 	for text in texts:
-		texto = text
+		texto = text.replace('\n', '')
 		html = "https://www.google.com.br/search?dcr=0&source=hp&q="
 
 		pagina = 0
@@ -27,27 +27,25 @@ with open("lista.txt", "r") as texts:
 		#regex
 		reg = re.compile(".*&sa=")
 
-		#lista de objetos
-		lista = []
-
 		#Parsing web urls
+		lista = []
 		for item in soup.find_all('h3', attrs={'class': 'r'}):
 			line = (reg.match(item.a['href'][7:]).group())
-			temp = Site(line, item.a.text, text)
+			temp = Site(line, item.a.text, texto)
 			lista.append(temp)
 
 		json_string = ""
 		if os.path.exists("data.json"):
-			with open("data.json", "r") as f:
+			with open("data.json", "r", encoding="utf-8") as f:
 				json_string = f.read()
 
 		if len(json_string) > 0:
 			data = json.loads(json_string)
 			for item in data:
-				temp = Site(item["url"], item["titulo"], especie)
+				temp = Site(item["url"], item["titulo"], texto)
 				lista.append(temp)
 
 		json_string = json.dumps([ob.__dict__ for ob in lista])
 
-		with open("data.json", "w") as f:
+		with open("data.json", "w", encoding="utf-8") as f:
 			f.write(json_string)
