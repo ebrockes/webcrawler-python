@@ -6,9 +6,16 @@ beautifulsoup4
 pip3.5 install beautifulsoup4
 
 # Requirement
-# Create text file passing list of texts
+# 1. Create text file passing list of texts
 # format: text
 # file name: list.txt
+# 2. Create text file passing list of words to be ignored
+# format: word
+# file name: ignore.txt
+# 3. List video web sites to be ignored on word count
+# format: domain
+# file name: ignore_domain.txt
+
 
 1. main.py 
 # Reads a google link passing text from file as parameter
@@ -25,13 +32,14 @@ pip3.5 install beautifulsoup4
 # domain, text, url
 # file name: urls.json
 
-#TODO
 3. most_common_words.py
 # 3.1. Read json file urls.json
-# 3.2. Create json file with list of words to be ignored:
+# 3.2. Read file with words to be ignored
+# 3.3. Read file with sites do be ignored
 # file name: ignore.json
 # 3.3. Retrieve most common words used on the site (url). 
+# Do not do this if in 3.3
 # Ignore words from item 2
 # 3.4. create json file with:
-# url, dictionary of common words - format: "word: number of occurrences"
-# file name: common_words.json
+# domain, text, url, dictionary of words and occurrencies
+# file name: words.json
