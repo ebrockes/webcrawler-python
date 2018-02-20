@@ -43,3 +43,11 @@ pip3.5 install beautifulsoup4
 # 3.4. create json file with:
 # domain, text, url, dictionary of words and occurrencies
 # file name: words.json
+
+4. find_identification.py
+#TODO names, phone numbers, emails on the web sites
+
+5. dashboard
+#TODO - web application
+
+
