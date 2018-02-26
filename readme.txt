@@ -12,9 +12,11 @@ pip3.5 install beautifulsoup4
 # 2. Create text file passing list of words to be ignored
 # format: word
 # file name: ignore.txt
-# 3. List video web sites to be ignored on word count
-# format: domain
-# file name: ignore_domain.txt
+# 3. List words that: 
+# 3.1. probably will appear in web sites related
+# 3.2. show that the specific site is not related
+# format: text: list of words ok : list of words not ok
+# file name: words.txt
 
 
 1. main.py 
@@ -29,25 +31,22 @@ pip3.5 install beautifulsoup4
 # format: domain_id, domain
 # file name: domains.json
 # 2.3. create a second json file with:
-# domain, text, url
+# domain, text, url, title
 # file name: urls.json
+# 2.4. erase data.json
 
-3. most_common_words.py
+TODO 3. words.py
 # 3.1. Read json file urls.json
-# 3.2. Read file with words to be ignored
-# 3.3. Read file with sites do be ignored
-# file name: ignore.json
-# 3.3. Retrieve most common words used on the site (url). 
-# Do not do this if in 3.3
-# Ignore words from item 2
-# 3.4. create json file with:
-# domain, text, url, dictionary of words and occurrencies
+# 3.2. Read file with words to be considered
+# 3.3. Evaluate occurrences of specific word on url:
+# 3.4. Create json file with:
+# url, text, list of word and number of ocurrences
 # file name: words.json
 
-4. find_identification.py
+TODO 4. find_identification.py
 #TODO names, phone numbers, emails on the web sites
 
-5. dashboard
+TODO 5. dashboard
 #TODO - web application
 
 
