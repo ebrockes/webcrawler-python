@@ -34,7 +34,6 @@ pip3.5 install beautifulsoup4
 # text -> list of domain
 # domain -> list of (url, title)
 # file name: urls.json
-# 2.4. erase data.json
 
 TODO 3. words.py
 # 3.1. Read json file urls.json
