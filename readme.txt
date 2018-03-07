@@ -22,7 +22,7 @@ pip3.5 install beautifulsoup4
 1. main.py 
 # Reads a google link passing text from file as parameter
 # Create a json file with:
-# title, url, text
+# url, titulo, text
 # file name: data.json
 
 2. break_url.py
@@ -30,8 +30,9 @@ pip3.5 install beautifulsoup4
 # 2.2 create json file with:
 # format: domain_id, domain
 # file name: domains.json
-# 2.3. create a second json file with:
-# domain, text, url, title
+# 2.3. create a second json file with: (TODO)
+# text -> list of domain
+# domain -> list of (url, title)
 # file name: urls.json
 # 2.4. erase data.json
 
@@ -40,7 +41,7 @@ TODO 3. words.py
 # 3.2. Read file with words to be considered
 # 3.3. Evaluate occurrences of specific word on url:
 # 3.4. Create json file with:
-# url, text, list of word and number of ocurrences
+# url, list of word and number of ocurrences
 # file name: words.json
 
 TODO 4. find_identification.py

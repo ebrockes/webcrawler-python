@@ -8,12 +8,12 @@ class Domain:
 	def __init__(self, domain):
 		self.domain = domain
 
+# text -> list of domain
+# domain -> list of (url, title)
 class URL:
-	def __init__(self, domain, text, url, title):
-		self.domain = domain
+	def __init__(self, text, domains):
 		self.text = text
-		self.url = url
-		self.title = title
+		self.domains = domains
 
 
 class Word:
