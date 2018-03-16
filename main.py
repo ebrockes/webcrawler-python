@@ -5,15 +5,17 @@ import re
 import json
 import os.path
 from model import Site
+import time
+import random
 
+contador = 0
 with open("lista.txt", "r", encoding="utf-8") as texts:
 	for text in texts:
 		word = text.strip()
 
 		texto = text.strip()
 		texto = '"' + texto.replace(" ", "+") + '"' + '+"venda"'
-		html = "https://www.google.com.br/search?dcr=0&source=hp&q="
-		pagina = 0
+		html = "https://www.google.com.br/search?dcr=0&source=hp&start="+contador+"&q="
 		url = html + texto
 
 		req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -44,3 +46,10 @@ with open("lista.txt", "r", encoding="utf-8") as texts:
 
 		with open("data.json", "w", encoding="utf-8") as f:
 			f.write(json_string)
+
+		tempo = random.randint(0, 10)
+		tempo = tempo * 60
+		tempo = 900 + tempo
+		time.sleep(tempo)
+
+		contador = contador + 10
