@@ -8,48 +8,62 @@ from model import Site
 import time
 import random
 
-contador = 0
+contador = 10
+limite = contador + 1000  # 90 até 1090
+
 with open("lista.txt", "r", encoding="utf-8") as texts:
 	for text in texts:
-		word = text.strip()
+		for i in range(contador, limite, 10):
+			word = text.strip()
 
-		texto = text.strip()
-		texto = '"' + texto.replace(" ", "+") + '"' + '+"venda"'
-		html = "https://www.google.com.br/search?dcr=0&source=hp&start="+contador+"&q="
-		url = html + texto
+			texto = text.strip()
+			texto = '"' + texto.replace(" ", "+") + '"' + '+"venda"'
+			html = "https://www.google.com.br/search?dcr=0&source=hp&start="+str(i)+"&q="
+			url = html + texto
+			print(url)
 
-		req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-		soup = BeautifulSoup(urlopen(req).read(),"html.parser")
 
-		#regex
-		reg = re.compile(".*&sa=")
+			tempo = 0
+			if i > contador:
+				tempo = 600 # 10 min
+				tempo = tempo + (random.random() * 120)
+			time.sleep(tempo)
+			print("dorme " + str(tempo))
 
-		#Parsing web urls
-		lista = []
-		for item in soup.find_all('h3', attrs={'class': 'r'}):
-			line = (reg.match(item.a['href'][7:]).group())
-			temp = Site(line, item.a.text, word)
-			lista.append(temp)
 
-		json_string = ""
-		if os.path.exists("data.json"):
-			with open("data.json", "r", encoding="utf-8") as f:
-				json_string = f.read()
-
-		if len(json_string) > 0:
-			data = json.loads(json_string)
-			for item in data:
-				temp = Site(item["url"], item["titulo"], item["texto"])
+			print("realiza web crawling")
+			req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+			soup = BeautifulSoup(urlopen(req).read(),"html.parser")
+			#regex
+			reg = re.compile(".*&sa=")
+			#Parsing web urls
+			lista = []
+			for item in soup.find_all('h3', attrs={'class': 'r'}):
+				line = (reg.match(item.a['href'][7:]).group())
+				temp = Site(line, item.a.text, word)
 				lista.append(temp)
+			print("web crawl registros: " + str(len(lista)))
 
-		json_string = json.dumps([ob.__dict__ for ob in lista])
+			if len(lista) == 0:
+				print("fim")
+				break
 
-		with open("data.json", "w", encoding="utf-8") as f:
-			f.write(json_string)
+			json_string = ""
+			if os.path.exists("data.json"):
+				with open("data.json", "r", encoding="utf-8") as f:
+					json_string = f.read()
 
-		tempo = random.randint(0, 10)
-		tempo = tempo * 60
-		tempo = 900 + tempo
-		time.sleep(tempo)
+			if len(json_string) > 0:
+				data = json.loads(json_string)
+				for item in data:
+					temp = Site(item["url"], item["titulo"], item["texto"])
+					lista.append(temp)
+				print("total registros " + str(len(lista)))
 
-		contador = contador + 10
+			json_string = json.dumps([ob.__dict__ for ob in lista])
+			print("json string len " + str(len(json_string)))
+
+			with open("data.json", "w", encoding="utf-8") as f:
+				f.write(json_string)
+
+			print("finaliza")
