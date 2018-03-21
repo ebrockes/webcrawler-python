@@ -8,8 +8,8 @@ from model import Site
 import time
 import random
 
-contador = 10
-limite = contador + 1000  # 90 até 1090
+contador = 90
+limite = contador + 150  # 90 até 240
 
 with open("lista.txt", "r", encoding="utf-8") as texts:
 	for text in texts:
@@ -25,15 +25,16 @@ with open("lista.txt", "r", encoding="utf-8") as texts:
 
 			tempo = 0
 			if i > contador:
-				tempo = 600 # 10 min
+				tempo = 1800 # 30 min
 				tempo = tempo + (random.random() * 120)
 			time.sleep(tempo)
-			print("dorme " + str(tempo))
+			print("dorme " + str(tempo/60) + " min")
 
 
 			print("realiza web crawling")
 			req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 			soup = BeautifulSoup(urlopen(req).read(),"html.parser")
+
 			#regex
 			reg = re.compile(".*&sa=")
 			#Parsing web urls
