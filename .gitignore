@@ -5,3 +5,4 @@ lista.txt
 _pycache__
 words.txt
 words.json
+__pycache__/*
