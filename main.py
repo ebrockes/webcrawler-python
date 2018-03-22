@@ -8,8 +8,8 @@ from model import Site
 import time
 import random
 
-contador = 90
-limite = contador + 150  # 90 até 240
+contador = 0
+limite = contador + 1500
 
 with open("lista.txt", "r", encoding="utf-8") as texts:
 	for text in texts:
