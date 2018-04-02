@@ -1,6 +1,5 @@
 python crawl
-Reference:
-https://stackoverflow.com/questions/7746832/scraping-and-parsing-google-search-results-using-python
+
 
 beautifulsoup4
 pip3.5 install beautifulsoup4
@@ -28,7 +27,5 @@ text3
   ]
 
 
-2. web application
-https://github.com/ebrockes/webcrawler-python-web
 
 
